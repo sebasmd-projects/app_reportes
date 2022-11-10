@@ -2,6 +2,8 @@ from django.db import models
 
 from django.utils import timezone
 
+from apps.objetos.managers import CategoriesObjectManager, ObjectManager, UseObjectManager
+
 from apps.usuarios.models import ClientsModel, PublishersModel
 
 # Create your models here.
@@ -31,6 +33,8 @@ class CategoriesObjectModel(models.Model):
         default=0,
         blank=True, null=True
     )
+    
+    objects = CategoriesObjectManager()
 
     def __str__(self):
         return self.name
@@ -46,16 +50,16 @@ class ObjetcModel(models.Model):
     object_category = models.ForeignKey(
         CategoriesObjectModel,
         on_delete=models.CASCADE,
+        related_name = 'object_category'
     )
 
     object_name = models.CharField(
         'Nombre del objeto',
         max_length=100
     )
-    
-    publisher = models.ForeignKey(
+
+    publisher = models.ManyToManyField(
         PublishersModel,
-        on_delete = models.CASCADE,
     )
 
     created = models.DateTimeField(
@@ -76,6 +80,8 @@ class ObjetcModel(models.Model):
         blank=True, null=True
     )
 
+    objects = ObjectManager()
+
     def __str__(self) -> str:
         return self.object_name
 
@@ -86,7 +92,7 @@ class ObjetcModel(models.Model):
         db_table = 'app_object'
 
 
-class UseObject(models.Model):
+class UseObjectModel(models.Model):
     user = models.ForeignKey(
         ClientsModel,
         on_delete=models.CASCADE,
@@ -95,6 +101,7 @@ class UseObject(models.Model):
     object = models.ForeignKey(
         ObjetcModel,
         on_delete=models.CASCADE,
+        related_name = 'object_use'
     )
 
     availability = models.BooleanField(
@@ -119,6 +126,8 @@ class UseObject(models.Model):
         blank=True, null=True
     )
     
+    objects = UseObjectManager()
+
     def __str__(self):
         return self.object.object_name
 

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block title %}{{title}}{% endblock title %}
+
+{% block content %}
+<h6>Cantidad de categorias por objeto:</h6>
+{% for c in CategoryPerObject %}
+<p>{{c.name}}: {{c.num_objects}}</p>
+{% endfor %}
+
+<h6>Cantidad total de "ventas"/"usos" de los objetos</h6>
+<p>Total de usos/ventas: {{ UsesPerObject }}</p>
+
+
+<h6>Promedio de edad de cliente por objeto</h6>
+<form method="GET">
+    {% csrf_token %}
+    <!-- name => el name es a quien se hace referencia en la vista para obtener el valor mediante GET -->
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="¿Nombre del objeto?" id="object_name_id" name="object_name">
+        <input type="text" class="form-control" placeholder="¿Id del objeto?" id="object_id_id" name="object_id">
+    </div>
+
+
+    <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-primary" type="submit">Consultar</button>
+    </div>
+</form>
+
+<p>El promedio de edad es: {{AvgAgePerObject}}</p>
+<p>La suma de las edades es: {{SumAgePerObject}}</p>
+{% endblock content %}

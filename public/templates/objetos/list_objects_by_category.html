@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Lista de objetos por categoria{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <h4>¿Que objetos tiene la categoria?</h4>
+</div>
+
+<form method="GET">
+    {% csrf_token %}
+    <!-- name => el name es a quien se hace referencia en la vista para obtener el valor mediante GET -->
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="¿Id de la categoria?" id="object_id_id" name="category_id">
+        <input type="text" class="form-control" placeholder="¿Nombre de la categoria?" id="object_name_id"
+            name="category_name">
+    </div>
+
+
+
+    <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-primary" type="submit">Consultar</button>
+    </div>
+    <div class="d-grid gap-2 mt-3">
+        <a href="/listar-objetos-por-categoria/" class="btn btn-warning" type="reset">Limpiar formulario</a>
+    </div>
+</form>
+<hr />
+{{ objectos }}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nombres</th>
+            <th scope="col">Categoria</th>
+            <th scope="col">Editor</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for objeto in objetos %}
+        <tr>
+            <td>{{ objeto.object_name }}</td>
+            <td>{{ objeto.object_category }}</td>
+            <td>
+                | {% for editor in objeto.publisher.all %}{{ editor }} | {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from apps.objetos.models import CategoriesObjectModel, ObjetcModel
+from apps.objetos.models import CategoriesObjectModel, ObjetcModel, UseObjectModel
 
 # Register your models here.
 
@@ -22,3 +22,20 @@ class ObjectAdmin(admin.ModelAdmin):
     
     def get_object_category_name(self, obj):
         return obj.object_category.name
+    
+    
+@admin.register(UseObjectModel)
+class UseObjectAdmin(admin.ModelAdmin):
+    list_display = ('id', 'get_object_name', 'get_user', 'availability', 'created', 'updated')
+    list_display_links = ('id', 'get_object_name', 'get_user')
+    readonly_fields = ('created', 'updated')
+    ordering = ('order', 'id')
+    
+
+    def get_object_name(self, obj):
+        return obj.object.object_name
+    
+    def get_user(self, obj):
+        return obj.user.full_name
+    
+    

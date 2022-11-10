@@ -39,10 +39,9 @@ class UsersModel(models.Model):
         blank=True, null=True
     )
 
-    age = models.CharField(
+    age = models.IntegerField(
         'Edad',
         default=0,
-        max_length=4,
     )
 
     created = models.DateField(

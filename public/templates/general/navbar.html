@@ -1,0 +1,57 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top mb-3">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'registros:reports' %}">Reportes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="{% url 'admin:index' %}">Admin</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Usuarios
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'usuarios:publishers' %}">Editores</a></li>
+                        <li><a class="dropdown-item" href="{% url 'usuarios:active-publishers' %}">Editores Activos</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'usuarios:filter-publishers' %}">Filtro Editores</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'usuarios:clients' %}">Clientes</a></li>
+                        <li><a class="dropdown-item" href="{% url 'usuarios:active-clients' %}">Clientes activos</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'usuarios:users-view' %}">Usuarios utilizando view</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'usuarios:users-templateview' %}">Usuarios utilizando
+                                templateview</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Objetos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" href="{% url 'objetos:list-objects-by-category' %}">Listar objetos
+                                por categoria</a></li>
+                        <li><a class="dropdown-item" href="{% url 'objetos:list-publishers-by-category' %}">Listar
+                                editores por categoria</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
