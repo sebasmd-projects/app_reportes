@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Lista de usuarios{% endblock title %}
+
+
+{% block content %}
+<h6>Editores</h6>
+<ul>
+    {% for editor in editores %}
+        <li>{{ editor.first_name }}</li>
+    {% endfor %}
+</ul>
+
+<hr />
+
+<h6>Clientes</h6>
+<ul>
+    {% for cliente in clientes %}
+        <li>{{ cliente.first_name }} {{ cliente.age }}</li>
+    {% endfor %}
+</ul>
+{% endblock content %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Lista de editores con filtro{% endblock title %}
+{% block navbar %}{% endblock navbar %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <h4>Lista de editores con filtro</h4>
+</div>
+
+<form method="GET">
+    {% csrf_token %}
+    <!-- name => el name es a quien se hace referencia en la vista para obtener el valor mediante GET -->
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="¿Nombre del autor?" id="publisher_name_id" name="nombres">
+        <input type="text" class="form-control" placeholder="¿Correo del autor?" id="publisher_email_id" name="correo">
+        <input type="text" class="form-control" placeholder="¿Edad del autor?" id="publisher_age_id" name="edad">
+        <input type="text" class="form-control" placeholder="¿Id del autor?" id="publisher_id_id" name="id_autor">
+    </div>
+
+    <div class="input-group">
+        <span class="input-group-text">Rango de fechas</span>
+        <input type="date" class="form-control" id="publisher_fecha1_id" name="fecha1">
+        <input type="date" class="form-control" id="publisher_fecha2_id" name="fecha2">
+    </div>
+
+
+    <div class="d-grid gap-2 mt-3">
+        <button class="btn btn-primary" type="submit">Consultar</button>
+    </div>
+    <div class="d-grid gap-2 mt-3">
+        <a href="/filtro-editores/" class="btn btn-warning" type="reset">Limpiar formulario</a>
+    </div>
+</form>
+<hr />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Nombres</th>
+            <th scope="col">Correo</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Fecha de creación</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for editor in editores %}
+        <tr>
+            <td>{{ editor.full_name }}</td>
+            <td>{{ editor.email }}</td>
+            <td>{{ editor.age }}</td>
+            <td>{{ editor.created }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}
