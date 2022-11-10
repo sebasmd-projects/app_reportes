@@ -12,7 +12,7 @@
     "BASE_URL": {
         "dev": "",
         "prod": "",
-        "local": ""
+        "local": "http://192.168.1.2:8000"
     },
     "SECRET_KEY": "django-4.1.3-i(yfrvd3r(ze3-zw+ufnfhc&ivj^q%w+=^^djq$8&pp9&jsb*",
     "LANGUAGE_CODE": "es-co",
@@ -27,14 +27,14 @@
         "local": [
             "localhost",
             "127.0.0.1",
-            "*"
+            "192.168.1.2"
         ]
     },
     "DB_CONN_MAX_AGE": 5,
     "ENGINE": "django.db.backends.postgresql_psycopg2",
-    "NAME": "",
-    "USER": "",
-    "PASSWORD": "",
+    "NAME": "db_reportes",
+    "USER": "db_user_reportes",
+    "PASSWORD": "db_password_reportes",
     "HOST": "localhost",
     "PORT": "5432"
 }
